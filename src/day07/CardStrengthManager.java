@@ -15,7 +15,7 @@ public class CardStrengthManager {
                 case "A" -> 14;
                 case "K" -> 13;
                 case "Q" -> 12;
-                case "J" -> 11;
+                case "J" -> 1;
                 case "T" -> 10;
                 default -> Integer.parseInt(card);
             };

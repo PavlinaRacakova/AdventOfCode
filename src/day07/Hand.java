@@ -45,6 +45,10 @@ public class Hand implements Comparable<Hand> {
         value.chars()
                 .mapToObj(c -> (char) c)
                 .forEach(c -> cards.put(c, cards.getOrDefault(c, 0) + 1));
+
+        if(cards.containsKey('J')) {
+            findHighestCardAppearanceAndIncreaseIt(cards.get('J'));
+        }
     }
 
     private boolean isFourOfAKind() {
@@ -70,5 +74,23 @@ public class Hand implements Comparable<Hand> {
         }
 
         return 0;
+    }
+
+
+    private void findHighestCardAppearanceAndIncreaseIt(int incrementBy) {
+
+        cards.remove('J');
+
+        int highest = 0;
+        char highestChar = 'x';
+
+        for(var entry : cards.entrySet()) {
+            if(entry.getValue() > highest) {
+                highest = entry.getValue();
+                highestChar = entry.getKey();
+            }
+        }
+
+        cards.put(highestChar, highest + incrementBy);
     }
 }
